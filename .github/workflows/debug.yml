@@ -1,0 +1,22 @@
+name: Debug
+
+on:
+  push: { branches: [main] }
+  pull_request: { types: [opened] }
+
+jobs:
+  build:
+    name: Build
+    env: { TERM: dumb }
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Setup Zig Toolchain
+        uses: mlugg/setup-zig@v1.2.1
+        with: { version: 0.13.0, use-cache: false }
+      - name: Build Debug Binaries
+        run: zig build --summary all
+      - name: Upload Debug Binaries
+        uses: actions/upload-artifact@v4
+        with: { name: hyper-debug, path: zig-out/bin/hyper }
