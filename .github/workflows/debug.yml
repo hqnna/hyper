@@ -1,7 +1,9 @@
 name: Debug
 
 on:
-  push: { branches: [main] }
+  push:
+    branches: [main]
+    paths: [build.zig, source/**.zig]
   pull_request: { types: [opened] }
 
 jobs:
