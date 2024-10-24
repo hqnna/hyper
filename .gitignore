@@ -1,0 +1,6 @@
+# VSCode Settings
+.vscode/
+
+# Zig Build Output
+.zig-cache/
+zig-out/
